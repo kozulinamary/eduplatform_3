@@ -1,0 +1,34 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-merge-conflict
+      - id: debug-statements
+
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [python]
+        args: [--line-length=200, --target-version=py37]
+
+      - id: flake8
+        name: flake8
+        entry: flake8
+        language: system
+        types: [python]
+        args: [
+            "--ignore=E203,E501,W503,FI10,FI11,FI12,FI13,FI14,FI15,FI16,FI17,FI58,PT013",
+            "--max-line-length=110",
+            "--per-file-ignores=tests/*.py:S101"
+        ]
+      - id: isort
+        name: isort
+        entry: isort
+        language: python
+        args: ["--profile", "black", "--filter-files"]
+        require_serial: false
+        additional_dependencies: []
+        minimum_pre_commit_version: '0'

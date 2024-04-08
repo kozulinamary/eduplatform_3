@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "project"
+version = "0.1.0"
+description = ""
+authors = ["kozulinamary <kozulinamary@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.7"
+python-dotenv = "^1.0.0"
+djangorestframework = "^3.14.0"
+psycopg2 = "^2.9.9"
+pillow = "^10.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+isort = "^5.12.0"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
