@@ -1,5 +1,5 @@
 from rest_framework import serializers
-<<<<<<< HEAD
+
 
 from .models import (
     Answer,
@@ -12,10 +12,7 @@ from .models import (
     TestAccess,
     Topic,
 )
-=======
-from .models import Course, Topic, Test, Article, Question, Answer, Attempt
-"""Нужно?   from django.contrib.auth.models import User"""
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -23,19 +20,13 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = "__all__"
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class TopicSerializier(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = "__all__"
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
@@ -47,7 +38,7 @@ class TestSerializer(serializers.ModelSerializer):
         model = Test
         fields = "__all__"
 
-<<<<<<< HEAD
+
 
 class TestAccessSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,8 +46,6 @@ class TestAccessSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
@@ -75,7 +64,7 @@ class AttemptSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-<<<<<<< HEAD
+
 """ Было    class TopicArticleSerializer(serializers.ModelSerializer):
 =======
 
@@ -114,8 +103,4 @@ class RecommendationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recommendation
         fields = "__all__"
-=======
-        return serializer.data
 
-
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a

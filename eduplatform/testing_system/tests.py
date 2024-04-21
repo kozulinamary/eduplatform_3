@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.urls import reverse
 from mentorship.consts import (
     create_answer,
@@ -66,54 +66,20 @@ __all__ = {
 }
 
 
-=======
-from rest_framework.test import APITestCase
-from django.urls import reverse
-from rest_framework import status
 
-from mentorship.consts import (
-    create_user, create_teacher, create_student,
-    create_course, create_topic, create_article,
-    create_test, create_question, create_answer,
-    create_attempt)
-from .serializers import CourseSerializer, TopicSerializier, TestSerializer, QuestionSerializer, AnswerSerializer, AttemptSerializer, ArticleSerializer
-
-
-
-__all__={"CreateCourseTest", "ReadCourseTest", "UpdateCourseTest", "DeleteCourseTest",
-         "CreateTopicTest", "ReadTopicTest", "UpdateTopicTest", "DeleteTopicTest",
-         "CreateArticleTest", "ReadArticleTest", "UpdateArticleTest", "DeleteArticleTest",
-         "CreateTestTest", "ReadTestTest", "UpdateTestTest", "DeleteTestTest",
-         "CreateQuestionTest", "ReadQuestionTest", "UpdateQuestionTest", "DeleteQuestionTest",
-         "CreateAnswerTest", "ReadAnswerTest", "UpdateAnswerTest", "DeleteAnswerTest",
-         "CreateAttemptTest", "ReadAttemptTest", "UpdateAttemptTest", "DeleteAttemptTest"}
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class CreateCourseTest(APITestCase):
     def setUp(self):
         self.user = create_user()
         self.teacher = create_teacher(self.user)
 
-<<<<<<< HEAD
+
     def test_create_course(self):
         url = reverse("course-list")
         response = self.client.post(url, data={"course_name": "Test", "teacher": self.teacher.id, "price": 1000}, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
-=======
 
-    def test_create_course(self):
-        url = reverse("course-list")
-        response = self.client.post(
-            url,
-            data={
-                "course_name": "Test",
-                "teacher": self.teacher.id,
-                "price": 1000},
-            format="json")
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class ReadCourseTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -130,10 +96,7 @@ class ReadCourseTest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class UpdateCourseTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -144,11 +107,9 @@ class UpdateCourseTest(APITestCase):
 
     def test_update_course(self):
         url = reverse("course-detail", args=[self.course.id])
-<<<<<<< HEAD
+
         response = self.client.put(url, self.data, format="json")
-=======
-        response = self.client.put(url, self.data, format='json')
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -157,10 +118,7 @@ class DeleteCourseTest(APITestCase):
         self.user = create_user()
         self.teacher = create_teacher(self.user)
         self.course = create_course(self.teacher)
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
     def test_delete_course(self):
         url = reverse("course-detail", args=[self.course.id])
         response = self.client.delete(url)
@@ -175,17 +133,9 @@ class CreateTopicTest(APITestCase):
 
     def test_create_topic(self):
         url = reverse("topic-list")
-<<<<<<< HEAD
+
         response = self.client.post(url, data={"name": "Test", "course": self.course.id, "content": 123456}, format="json")
-=======
-        response = self.client.post(
-            url,
-            data={
-                "name": "Test",
-                "course": self.course.id,
-                "content": 123456},
-            format="json")
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -218,11 +168,9 @@ class UpdateTopicTest(APITestCase):
 
     def test_update_topic(self):
         url = reverse("topic-detail", args=[self.topic.id])
-<<<<<<< HEAD
+
         response = self.client.put(url, self.data, format="json")
-=======
-        response = self.client.put(url, self.data, format='json')
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -245,10 +193,9 @@ class CreateArticleTest(APITestCase):
         self.teacher = create_teacher(self.user)
         self.course = create_course(self.teacher)
         self.topic = create_topic(self.course)
-<<<<<<< HEAD
+
         self.test = create_test(teacher_id=self.teacher, topic_id=self.topic)
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
 
     def test_create_article(self):
         url = reverse("article-list")
@@ -258,7 +205,7 @@ class CreateArticleTest(APITestCase):
                 "title": "Test",
                 "topic": self.topic.id,
                 "teacher": self.teacher.id,
-<<<<<<< HEAD
+
                 "content": "123456",
                 "test": self.test.id,
                 "course": self.course.id,
@@ -268,12 +215,7 @@ class CreateArticleTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
-=======
-                "content": "123456"},
-            format="json")
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class ReadArticleTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -281,10 +223,7 @@ class ReadArticleTest(APITestCase):
         self.course = create_course(self.teacher)
         self.topic = create_topic(self.course)
         self.article = create_article(teacher_id=self.teacher, topic_id=self.topic)
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
     def test_read_article_list(self):
         url = reverse("article-list")
         response = self.client.get(url)
@@ -295,10 +234,7 @@ class ReadArticleTest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class UpdateArticleTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -306,25 +242,18 @@ class UpdateArticleTest(APITestCase):
         self.course = create_course(self.teacher)
         self.topic = create_topic(self.course)
         self.article = create_article(teacher_id=self.teacher, topic_id=self.topic)
-<<<<<<< HEAD
+
         self.data = ArticleSerializer(self.article).data
-=======
-        self.data = TopicSerializier(self.topic).data
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
         self.data.update({"title": "NewArticleTitle"})
 
     def test_update_article(self):
         url = reverse("article-detail", args=[self.article.id])
-<<<<<<< HEAD
+
         response = self.client.put(url, self.data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-=======
-        response = self.client.put(url, self.data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class DeleteArticleTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -339,11 +268,6 @@ class DeleteArticleTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class CreateTestTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -353,19 +277,9 @@ class CreateTestTest(APITestCase):
 
     def test_create_test(self):
         url = reverse("test-list")
-<<<<<<< HEAD
+
         response = self.client.post(url, data={"title": "Test", "topic": self.topic.id, "teacher": self.teacher.id, "description": "12345", "is_open": False}, format="json")
-=======
-        response = self.client.post(
-            url,
-            data={
-                "title": "Test",
-                "topic": self.topic.id,
-                "teacher": self.teacher.id,
-                "description": "12345",
-                "is_open": False},
-            format="json")
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -388,10 +302,6 @@ class ReadTestTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class UpdateTestTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -399,20 +309,14 @@ class UpdateTestTest(APITestCase):
         self.course = create_course(self.teacher)
         self.topic = create_topic(self.course)
         self.test = create_test(teacher_id=self.teacher, topic_id=self.topic)
-<<<<<<< HEAD
+
         self.data = TestSerializer(self.test).data
-=======
-        self.data =TestSerializer(self.test).data
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.data.update({"title": "NewTestTitle"})
 
     def test_update_test(self):
         url = reverse("test-detail", args=[self.test.id])
-<<<<<<< HEAD
         response = self.client.put(url, self.data, format="json")
-=======
-        response = self.client.put(url, self.data, format='json')
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -430,7 +334,7 @@ class DeleteTestTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 
-<<<<<<< HEAD
+
 class CreateTestAccessTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -502,8 +406,6 @@ class DeleteTestAccessTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class CreateQuestionTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -514,17 +416,9 @@ class CreateQuestionTest(APITestCase):
 
     def test_create_question(self):
         url = reverse("question-list")
-<<<<<<< HEAD
+
         response = self.client.post(url, data={"text": "question_text", "test": self.test.id, "is_important": False}, format="json")
-=======
-        response = self.client.post(
-            url,
-            data={
-                "text": "question_text",
-                "test": self.test.id,
-                "is_important": False},
-            format="json")
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -548,10 +442,7 @@ class ReadQuestionTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class UpdateQuestionTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -565,11 +456,8 @@ class UpdateQuestionTest(APITestCase):
 
     def test_update_question(self):
         url = reverse("question-detail", args=[self.question.id])
-<<<<<<< HEAD
+
         response = self.client.put(url, self.data, format="json")
-=======
-        response = self.client.put(url, self.data, format='json')
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -588,10 +476,6 @@ class DeleteQuestionTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class CreateAnswerTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -601,22 +485,10 @@ class CreateAnswerTest(APITestCase):
         self.test = create_test(teacher_id=self.teacher, topic_id=self.topic)
         self.question = create_question(test_id=self.test)
 
-<<<<<<< HEAD
     def test_create_answer(self):
         url = reverse("answer-list")
         response = self.client.post(url, data={"text": "answer_text", "question": self.question.id, "is_correct": False}, format="json")
-=======
 
-    def test_create_answer(self):
-        url = reverse("answer-list")
-        response = self.client.post(
-            url,
-            data={
-                "text": "answer_text",
-                "question": self.question.id,
-                "is_correct": False},
-            format="json")
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -655,18 +527,12 @@ class UpdateAnswerTest(APITestCase):
 
     def test_update_answer(self):
         url = reverse("answer-detail", args=[self.answer.id])
-<<<<<<< HEAD
+
         response = self.client.put(url, self.data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
-=======
-        response = self.client.put(url, self.data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
-
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class DeleteAnswerTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -682,10 +548,7 @@ class DeleteAnswerTest(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
 class CreateAttemptTest(APITestCase):
     def setUp(self):
         self.user = create_user()
@@ -695,23 +558,10 @@ class CreateAttemptTest(APITestCase):
         self.topic = create_topic(self.course)
         self.test = create_test(teacher_id=self.teacher, topic_id=self.topic)
 
-<<<<<<< HEAD
     def test_create_attempt(self):
         url = reverse("attempt-list")
         response = self.client.post(url, data={"test": self.test.id, "student": self.student.id, "score": 50}, format="json")
-=======
 
-
-    def test_create_attempt(self):
-        url = reverse("attempt-list")
-        response = self.client.post(
-            url,
-            data={
-                "test": self.test.id,
-                "student": self.student.id,
-                "score": 50},
-            format="json")
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
@@ -725,10 +575,7 @@ class ReadAttemptTest(APITestCase):
         self.test = create_test(teacher_id=self.teacher, topic_id=self.topic)
         self.attempt = create_attempt(test_id=self.test, student_id=self.student)
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
     def test_read_attempt_list(self):
         url = reverse("attempt-list")
         response = self.client.get(url)
@@ -754,11 +601,9 @@ class UpdateAttemptTest(APITestCase):
 
     def test_update_attempt(self):
         url = reverse("attempt-detail", args=[self.attempt.id])
-<<<<<<< HEAD
+
         response = self.client.put(url, self.data, format="json")
-=======
-        response = self.client.put(url, self.data, format='json')
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -775,7 +620,6 @@ class DeleteAttemptTest(APITestCase):
     def test_delete_attempt(self):
         url = reverse("attempt-detail", args=[self.attempt.id])
         response = self.client.delete(url)
-<<<<<<< HEAD
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 
@@ -856,6 +700,4 @@ class DeleteRecommendationTest(APITestCase):
         url = reverse("recommendation-detail", args=[self.recommendation.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-=======
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
+
