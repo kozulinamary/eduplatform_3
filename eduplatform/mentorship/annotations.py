@@ -1,6 +1,8 @@
+
 from dataclasses import dataclass
 from datetime import datetime
 from typing import List, Union
+
 
 
 @dataclass(frozen=True, slots=True)
@@ -47,6 +49,7 @@ class TopicAnnotation:
 
 
 @dataclass(frozen=True, slots=True)
+
 class MessageAnnotation:
     sender: UserAnnotation
     recipients: UserAnnotation
@@ -60,7 +63,6 @@ class ArticleAnnotation:
     teacher: TeacherAnnotation
     topic: TopicAnnotation
     content: str
-
 
 @dataclass(frozen=True, slots=True)
 class TestAnnotation:
@@ -96,6 +98,7 @@ class AttemptAnnotation:
     test: TestAnnotation
     student: StudentAnnotation
     score: int
+
 
 
 @dataclass(frozen=True, slots=True)

@@ -1,3 +1,4 @@
+
 from datetime import datetime
 
 from django.contrib.auth import get_user_model
@@ -45,6 +46,7 @@ class CreateChatRoomTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
+
 class ReadChatRoomTest(APITestCase):
     def setUp(self):
         self.chatroom = create_chatroom()
@@ -60,6 +62,7 @@ class ReadChatRoomTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
+
 class UpdateChatRoomTest(APITestCase):
     def setUp(self):
         self.chatroom = create_chatroom()
@@ -68,6 +71,7 @@ class UpdateChatRoomTest(APITestCase):
 
     def test_update_chatroom(self):
         url = reverse("chatroom-detail", args=[self.chatroom.id])
+
         response = self.client.put(url, self.data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -75,15 +79,14 @@ class UpdateChatRoomTest(APITestCase):
 class DeleteChatRoomTest(APITestCase):
     def setUp(self):
         self.chatroom = create_chatroom()
-
     def test_delete_chatroom(self):
         url = reverse("chatroom-detail", args=[self.chatroom.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-
 class CreateChatMessageTest(APITestCase):
     def setUp(self):
+
         self.sender = create_sender()
         self.recipient = create_recipient()
         self.chatroom = create_chatroom()
@@ -116,6 +119,7 @@ class ReadChatMessageTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
+
 class UpdateChatMessageTest(APITestCase):
     def setUp(self):
         self.sender = create_sender()
@@ -142,3 +146,4 @@ class DeleteChatMessageTest(APITestCase):
         url = reverse("chatmessage-detail", args=[self.chat_message.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+

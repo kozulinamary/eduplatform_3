@@ -1,3 +1,4 @@
+
 from chat.models import ChatMessage, ChatRoom
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
@@ -33,6 +34,7 @@ from .annotations import (
 )
 from .models import Group, Message, Student, Teacher, User
 
+
 USER_DATA = {
     "password": "qwerty",
     "first_name": "Name_test",
@@ -47,6 +49,7 @@ def create_user() -> UserAnnotation:
         user = User.objects.get(email=email)
     except ObjectDoesNotExist:
         user = User.objects.create_user(email=email, password="qwerty", first_name="Name_test", last_name="Surname_test")
+
     return user
 
 
@@ -55,9 +58,11 @@ def create_teacher(user_id) -> TeacherAnnotation:
     return teacher
 
 
+
 def create_teacher_2(user_id) -> TeacherAnnotation:
     teacher_2 = Teacher.objects.create(experience=20, user=user_id)
     return teacher_2
+
 
 
 def create_student(user_id) -> StudentAnnotation:
@@ -80,6 +85,7 @@ def create_topic(course_id) -> TopicAnnotation:
     return topic
 
 
+
 def create_test(teacher_id, topic_id) -> TestAnnotation:
     test = Test.objects.create(title="Test", topic=topic_id, teacher=teacher_id, description="12345", is_open=False)
     return test
@@ -91,6 +97,7 @@ def create_test_access(test_id, shared_with_teacher_id) -> TestAccessAnnotation:
         shared_with_teacher=shared_with_teacher_id,
     )
     return test_access
+
 
 
 def create_article(teacher_id, topic_id) -> ArticleAnnotation:
@@ -105,10 +112,12 @@ def create_article(teacher_id, topic_id) -> ArticleAnnotation:
 
 def create_question(test_id) -> QuestionAnnotation:
     question = Question.objects.create(text="text_content", test=test_id, is_important=False)
+
     return question
 
 
 def create_answer(question_id) -> AnswerAnnotation:
+
     answer = Answer.objects.create(text="answer_content", question=question_id, is_correct=False)
     return answer
 
@@ -125,6 +134,7 @@ def create_chatroom() -> ChatRoomAnnotation:
 
 def create_sender():
     sender = User.objects.create_user(email="test@mail.ru", password="qwerty", first_name="Name_test", last_name="Surname_test")
+
     return sender
 
 
@@ -164,3 +174,4 @@ def create_message(sender, recipient) -> MessageAnnotation:
     message_2 = Message.objects.create(sender_id=sender.id, topic="New_topic", text="New_text")
     message_2.recipients.add(recipient.id)
     return message_2
+

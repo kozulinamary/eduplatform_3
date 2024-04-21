@@ -36,9 +36,11 @@ AUTH_USER_MODEL = "mentorship.User"
 # Application definition
 
 INSTALLED_APPS = [
+
     *["django.contrib.admin", "django.contrib.auth", "django.contrib.contenttypes", "django.contrib.sessions", "django.contrib.messages", "django.contrib.staticfiles"],
     *["mentorship", "testing_system", "chat"],
     *["rest_framework"],
+
 ]
 
 MIDDLEWARE = [

@@ -12,3 +12,4 @@ urlpatterns = [
     path("", include(router.urls)),
     path("chatroom/<id>/chat_message", ChatRoomChatMessageAPIView.as_view(), name="chatroom_chat_message"),
 ]
+

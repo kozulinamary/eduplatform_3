@@ -4,6 +4,7 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+<<<<<<< HEAD
     initial = True
 
     dependencies = []
@@ -13,6 +14,19 @@ class Migration(migrations.Migration):
             name="Course",
             fields=[
                 ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+=======
+
+    initial = True
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Course',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+>>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
             ],
         ),
     ]

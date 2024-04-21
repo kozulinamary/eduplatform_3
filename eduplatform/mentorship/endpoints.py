@@ -1,3 +1,4 @@
+
 from itertools import chain
 
 from django.http import HttpResponse
@@ -15,6 +16,7 @@ from .serializers import (
     TeacherStudentSerializer,
     UserSerializer,
 )
+
 
 
 class UserViewSet(ModelViewSet):
@@ -46,6 +48,7 @@ class GroupStudentAPIView(ListAPIView):
     serializer_class = StudentSerializer
     permission_classes = [permissions.AllowAny]
 
+
     def get_queryset(self):
         group = self.kwargs["id"]
         return Student.objects.filter(group__in=group)
@@ -75,6 +78,7 @@ class RegisterUserViewSet(mixins.CreateModelMixin, GenericViewSet):
 
 
 class MessageViewSet(ModelViewSet):
+
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = [permissions.AllowAny]

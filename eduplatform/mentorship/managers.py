@@ -1,6 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
 
-
 class CastomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         if not email:
@@ -11,6 +10,7 @@ class CastomUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault("is_staff", True)
