@@ -4,14 +4,24 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
+<<<<<<< HEAD
+    dependencies = [
+        ("testing_system", "0008_create_attempt_model"),
+=======
 
     dependencies = [
         ('testing_system', '0008_create_attempt_model'),
+>>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
     ]
 
     operations = [
         migrations.AlterModelOptions(
+<<<<<<< HEAD
+            name="question",
+            options={"verbose_name": "question", "verbose_name_plural": "questions"},
+=======
             name='question',
             options={'verbose_name': 'question', 'verbose_name_plural': 'questions'},
+>>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
         ),
     ]

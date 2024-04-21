@@ -25,6 +25,3 @@ class CastomUserManager(BaseUserManager):
             raise ValueError("Superuser must have is_active = True")
 
         return self.create_user(email, password, **extra_fields)
-
-
-
