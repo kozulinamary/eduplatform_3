@@ -1,10 +1,7 @@
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.conf import settings
-
-
-
+from django.db import models
 
 from .managers import CastomUserManager
 from .mixins import DateTimeMixin
@@ -73,11 +70,9 @@ class Group(models.Model, DateTimeMixin):
         verbose_name_plural = "groups"
 
 
-
-
 class Message(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sent_messages')
-    recipients = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='related_name_message')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sent_messages")
+    recipients = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="related_name_message")
     topic = models.CharField(max_length=128)
     text = models.TextField()
 
@@ -87,4 +82,3 @@ class Message(models.Model):
     class Meta:
         verbose_name = "Message"
         verbose_name_plural = "Messages"
-

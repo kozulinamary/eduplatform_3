@@ -1,26 +1,45 @@
-from rest_framework import permissions
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import ListCreateAPIView, ListAPIView
-from .models import (Course, Topic, Article, Test,
-                     Question, Answer, Attempt)
-from .serializers import (CourseSerializer, TopicSerializier, ArticleSerializer,
-                          TestSerializer, QuestionSerializer, AnswerSerializer,
-                          AttemptSerializer, TopicArticleSerializer)
-
-
 from itertools import chain
-from django.db.models import Subquery
+
+from rest_framework import permissions
+from rest_framework.generics import ListAPIView, ListCreateAPIView
+from rest_framework.viewsets import ModelViewSet
+
+from .models import (
+    Answer,
+    Article,
+    Attempt,
+    Course,
+    Question,
+    Recommendation,
+    Test,
+    TestAccess,
+    Topic,
+)
+from .serializers import (
+    AnswerSerializer,
+    ArticleSerializer,
+    AttemptSerializer,
+    CourseSerializer,
+    QuestionSerializer,
+    RecommendationSerializer,
+    TestAccessSerializer,
+    TestSerializer,
+    TopicArticleSerializer,
+    TopicSerializier,
+)
 
 ALL_COURSES = Course.objects.all()
 ALL_TOPICS = Topic.objects.all()
 ALL_ARTICLES = Article.objects.all()
 ALL_TESTS = Test.objects.all()
+ALL_TESTS_ACCESS = TestAccess.objects.all()
 ALL_QUESTIONS = Question.objects.all()
 ALL_ANSWERS = Answer.objects.all()
 ALL_ATTEMPTS = Attempt.objects.all()
+ALL_RECOMMENDATION = Recommendation.objects.all()
+
 
 class CourseViewSet(ModelViewSet):
-
     queryset = ALL_COURSES
     serializer_class = CourseSerializer
     permission_classes = [permissions.AllowAny]
@@ -44,15 +63,23 @@ class TestViewSet(ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
 
+class TestAccessViewSet(ModelViewSet):
+    queryset = ALL_TESTS_ACCESS
+    serializer_class = TestAccessSerializer
+    permission_classes = [permissions.AllowAny]
+
+
 class QuestionViewSet(ModelViewSet):
     queryset = ALL_QUESTIONS
     serializer_class = QuestionSerializer
     permission_classes = [permissions.AllowAny]
 
+
 class AnswerViewSet(ModelViewSet):
     queryset = ALL_ANSWERS
     serializer_class = AnswerSerializer
     permission_classes = [permissions.AllowAny]
+
 
 class AttemptViewSet(ModelViewSet):
     queryset = ALL_ATTEMPTS
@@ -68,7 +95,6 @@ class CourseTopicAPIView(ListCreateAPIView):
     def get_queryset(self):
         course = self.kwargs["id"]
         return Topic.objects.filter(course_id=course)
-
 
 
 class TopicArticleAPIView(ListCreateAPIView):
@@ -93,27 +119,12 @@ class TestQuestionAPIView(ListCreateAPIView):
 
 class QuestionAnswerAPIView(ListCreateAPIView):
     queryset = ALL_ANSWERS
-    serializer_class =AnswerSerializer
+    serializer_class = AnswerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         question = self.kwargs["id"]
         return Answer.objects.filter(question_id=question)
-
-
-"""Это у него в видео: Но у меня все была ошибка, поэтому я изменила на класс ниже: 
-
-class CourseContentAPIView(ListAPIView):
-    serializer_class = TopicArticleSerializer
-    permission_classes = [permissions.IsAdminUser]
-
-    def get_queryset(self):
-        course = self.kwargs["id"]
-        topics = Topic.objects.filter(course=course)
-        articles = Article.objects.filter(topics_in=Subquery(topics.values("pk")))
-        content = list(chain(set(topics), set(articles)))
-        return content"""
-
 
 
 class CourseContentAPIView(ListAPIView):
@@ -127,3 +138,8 @@ class CourseContentAPIView(ListAPIView):
         content = list(chain(topics, articles))
         return content
 
+
+class RecommendationViewSet(ModelViewSet):
+    queryset = ALL_RECOMMENDATION
+    serializer_class = RecommendationSerializer
+    permission_classes = [permissions.AllowAny]

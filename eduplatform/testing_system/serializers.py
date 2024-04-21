@@ -1,6 +1,16 @@
 from rest_framework import serializers
-from .models import Course, Topic, Test, Article, Question, Answer, Attempt
-"""Нужно?   from django.contrib.auth.models import User"""
+
+from .models import (
+    Answer,
+    Article,
+    Attempt,
+    Course,
+    Question,
+    Recommendation,
+    Test,
+    TestAccess,
+    Topic,
+)
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -8,10 +18,12 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = "__all__"
 
+
 class TopicSerializier(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = "__all__"
+
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,6 +35,13 @@ class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
         fields = "__all__"
+
+
+class TestAccessSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestAccess
+        fields = "__all__"
+
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,8 +61,7 @@ class AttemptSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-class TopicArticleSerializer(serializers.ModelSerializer):
+""" Было    class TopicArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
 
@@ -55,6 +73,24 @@ class TopicArticleSerializer(serializers.ModelSerializer):
                 serializer = ArticleSerializer(object)
             case _:
                 raise Exception("Nothing to serialize. Chooses are: Topic or Article instances.")
+        return serializer.data"""
+
+
+class TopicArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Topic
+
+    def to_representation(self, object):
+        if isinstance(object, Topic):
+            serializer = TopicSerializier(object)
+        elif isinstance(object, Article):
+            serializer = ArticleSerializer(object)
+        else:
+            raise Exception("Nothing to serialize. Chooses are: Topic or Article instances.")
         return serializer.data
 
 
+class RecommendationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recommendation
+        fields = "__all__"
