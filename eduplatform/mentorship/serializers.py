@@ -26,20 +26,6 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-"""Было  class TeacherStudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-    def to_representation(self, object):
-
-        match isinstance(object, Student):
-            case True:
-                serializer = StudentSerializer(object)
-            case False:
-                serializer = TeacherSerializer(object)
-            case _:
-                raise Exception("Nothing to serialize")
-
-        return serializer.data"""
 
 
 class TeacherStudentSerializer(serializers.ModelSerializer):

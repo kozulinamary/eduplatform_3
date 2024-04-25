@@ -4,7 +4,6 @@ from mentorship.mixins import DateTimeMixin
 from mentorship.models import Student, Teacher
 
 
-
 class Course(models.Model, DateTimeMixin):
     name = models.CharField(max_length=100, default="course_name")
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)

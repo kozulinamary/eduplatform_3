@@ -1,4 +1,3 @@
-
 from chat.models import ChatMessage, ChatRoom
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
