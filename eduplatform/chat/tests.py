@@ -3,20 +3,10 @@ from datetime import datetime
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from mentorship.consts import (
-    create_answer,
-    create_article,
-    create_attempt,
     create_chat_message,
     create_chatroom,
-    create_course,
-    create_question,
     create_recipient,
     create_sender,
-    create_student,
-    create_teacher,
-    create_test,
-    create_topic,
-    create_user,
 )
 from rest_framework import status
 from rest_framework.test import APITestCase
