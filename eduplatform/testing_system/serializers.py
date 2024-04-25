@@ -65,26 +65,6 @@ class AttemptSerializer(serializers.ModelSerializer):
 
 
 
-""" Было    class TopicArticleSerializer(serializers.ModelSerializer):
-=======
-
-class TopicArticleSerializer(serializers.ModelSerializer):
->>>>>>> 5e6afde4c6d76c43252b22cb589861dd7611ff9a
-    class Meta:
-        model = Topic
-
-    def to_representation(self, object):
-        match isinstance(object, Topic):
-            case True:
-                serializer = TopicSerializier(object)
-            case False:
-                serializer = ArticleSerializer(object)
-            case _:
-                raise Exception("Nothing to serialize. Chooses are: Topic or Article instances.")
-<<<<<<< HEAD
-        return serializer.data"""
-
-
 class TopicArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic

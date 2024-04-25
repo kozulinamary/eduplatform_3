@@ -1,4 +1,3 @@
-
 from itertools import chain
 
 from django.http import HttpResponse
